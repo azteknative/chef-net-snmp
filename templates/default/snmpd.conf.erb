@@ -13,7 +13,7 @@
 # rocommunity: a SNMPv1/SNMPv2c read-only access community name
 #   arguments:  community [default|hostname|network/bits] [oid]
 
-rocommunity  <%= node[:snmp_v2c][:community_string] %> 212.110.176.58/32 
+rocommunity  <%= node['snmp_v2c']['community_string'] %> 212.110.176.58/32 
 
 
 ###########################################################################
@@ -50,6 +50,6 @@ sysservices 76
 # SECTION: Disk Space Monitoring
 #
 
-<% node[:snmp_v2c][:mountpoints].each do |mount| %>
+<% node['snmp_v2c']['mountpoints'].each do |mount| %>
 disk	<%= mount %>
 <% end %>

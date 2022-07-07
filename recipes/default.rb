@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-case node[:platform]
+case node['platform']
   when "CentOS","RedHat","Fedora"
   package "net-snmp"  
 end
