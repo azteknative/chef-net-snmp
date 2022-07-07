@@ -13,7 +13,7 @@
 # rocommunity: a SNMPv1/SNMPv2c read-only access community name
 #   arguments:  community [default|hostname|network/bits] [oid]
 
-rocommunity  <%= node['snmp_v2c']['community_string'] %> 212.110.176.58/32 
+rocommunity  <%= @community_string %> <%= @source_ip %>
 
 
 ###########################################################################
@@ -30,7 +30,7 @@ rocommunity  <%= node['snmp_v2c']['community_string'] %> 212.110.176.58/32
 #   the variable.
 #   arguments:  location_string
 
-syslocation  "Bytemark Data Centre"
+syslocation  "<%= @syslocation %>"
 
 # syscontact: The contact information for the administrator
 #   Note that setting this value here means that when trying to
@@ -40,7 +40,7 @@ syslocation  "Bytemark Data Centre"
 #   the variable.
 #   arguments:  contact_string
 
-syscontact  "Headshift Sysadmin <unix.admin@headshift.com>"
+syscontact  "<%= @syscontact %>"
 
 # sysservices: The proper value for the sysServices object.
 #   arguments:  sysservices_number
@@ -50,6 +50,7 @@ sysservices 76
 # SECTION: Disk Space Monitoring
 #
 
-<% node['snmp_v2c']['mountpoints'].each do |mount| %>
+<% @mountpoints.each do |mount| %>
 disk	<%= mount %>
 <% end %>
+

@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+Chef::Resource::Template.include NetSnmp::Helper
 
 case node['platform']
   when 'CentOS','RedHat','Fedora'
@@ -41,5 +42,12 @@ end
 
 template '/etc/snmp/snmpd.conf' do
   source 'snmpd.conf.erb'
+  variables ({
+    community_string: node['snmp_v2c']['community_string'],
+    source_ip: snmp_v2c_source_ip,
+    syslocation: node['snmp_v2c']['syslocation'],
+    syscontact: node['snmp_v2c']['syscontact'],
+    mountpoints: node['snmp_v2c']['mountpoints']
+  })
   notifies :restart, resources(:service => 'snmpd'), :immediately
 end
