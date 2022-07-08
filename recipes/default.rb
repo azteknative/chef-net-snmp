@@ -28,9 +28,8 @@ package 'net-snmp' do
 end
 
 service 'snmpd' do
-  service_name 'snmpd'
   supports :restart => true
-  action[:enable, :start]
+  action [ :enable, :start ]
 end
 
 directory '/etc/snmp' do
