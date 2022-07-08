@@ -9,3 +9,4 @@ bin
 .kitchen.local.yml
 *.json
 *.swp
+*.lock
