@@ -4,14 +4,7 @@
 #
 Chef::Resource::Template.include NetSnmp::Helper
 
-case node['platform']
-  when 'CentOS','RedHat','Fedora'
-  package 'net-snmp'
-end
-
-package 'net-snmp' do
-  action :install
-end
+include_recipe 'net-snmp::install'
 
 service 'snmpd' do
   supports :restart => true
